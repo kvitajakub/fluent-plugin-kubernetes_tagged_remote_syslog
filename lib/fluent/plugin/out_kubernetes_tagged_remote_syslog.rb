@@ -1,6 +1,6 @@
 module Fluent
-  class RemoteSyslogOutput < Fluent::Output
-    Fluent::Plugin.register_output('yet_another_kubernetes_remote_syslog', self)
+  class KubernetesTaggedRemoteSyslogOutput < Fluent::Output
+    Fluent::Plugin.register_output('kubernetes_tagged_remote_syslog', self)
 
     config_param :host, :string
     config_param :port, :integer, default: 514

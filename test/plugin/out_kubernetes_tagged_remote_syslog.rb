@@ -1,23 +1,22 @@
 require "test_helper"
-require "fluent/plugin/out_remote_syslog"
+require "fluent/plugin/out_kubernetes_tagged_remote_syslog"
 
-class RemoteSyslogOutputTest < MiniTest::Unit::TestCase
+class KubernetesTaggedRemoteSyslogOutputTest < MiniTest::Unit::TestCase
   def setup
     Fluent::Test.setup
   end
 
-  def create_driver(conf = CONFIG, tag = "test.yet_another_kubernetes_remote_syslog")
-    Fluent::Test::OutputTestDriver.new(Fluent::RemoteSyslogOutput, tag) {}.configure(conf)
+  def create_driver(conf = CONFIG, tag = "test.kubernetes_tagged_remote_syslog")
+    Fluent::Test::OutputTestDriver.new(Fluent::KubernetesTaggedRemoteSyslogOutput, tag) {}.configure(conf)
   end
 
   def test_configure
     d = create_driver %[
-      type yet_another_kubernetes_remote_syslog
+      type kubernetes_tagged_remote_syslog
       hostname foo.com
       host example.com
       port 5566
       severity debug
-      tag minitest
     ]
 
     d.run do
@@ -41,7 +40,7 @@ class RemoteSyslogOutputTest < MiniTest::Unit::TestCase
 
   def test_rewrite_tag
     d = create_driver %[
-      type yet_another_kubernetes_remote_syslog
+      type kubernetes_tagged_remote_syslog
       hostname foo.com
       host example.com
       port 5566
@@ -57,6 +56,6 @@ class RemoteSyslogOutputTest < MiniTest::Unit::TestCase
     logger = loggers.values.first
 
     p = logger.instance_variable_get(:@packet)
-    assert_equal "rewrited.yet_another_kubernetes_remote_syslog", p.tag
+    assert_equal "rewrited.kubernetes_tagged_remote_syslog", p.tag
   end
 end
