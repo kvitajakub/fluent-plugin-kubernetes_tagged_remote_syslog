@@ -1,13 +1,14 @@
-require "test_helper"
-require "fluent/plugin/out_kubernetes_tagged_remote_syslog"
+require 'test_helper'
+require 'json'
+require 'fluent/plugin/out_kubernetes_tagged_remote_syslog'
 
 class KubernetesTaggedRemoteSyslogOutputTest < MiniTest::Unit::TestCase
   def setup
     Fluent::Test.setup
   end
 
-  def create_driver(conf = CONFIG, tag = "test.kubernetes_tagged_remote_syslog")
-    Fluent::Test::OutputTestDriver.new(Fluent::KubernetesTaggedRemoteSyslogOutput, tag) {}.configure(conf)
+  def create_driver(conf = CONFIG, program = "test.kubernetes_tagged_remote_syslog")
+    Fluent::Test::OutputTestDriver.new(Fluent::KubernetesTaggedRemoteSyslogOutput, program) {}.configure(conf)
   end
 
   def test_configure
@@ -45,7 +46,7 @@ class KubernetesTaggedRemoteSyslogOutputTest < MiniTest::Unit::TestCase
       host example.com
       port 5566
       severity debug
-      tag rewrited.${tag_parts[1]}
+      program rewrited.${tag_parts[1]}
     ]
 
     d.run do

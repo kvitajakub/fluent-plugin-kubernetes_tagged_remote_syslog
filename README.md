@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog.svg?branch=master)](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog)
+<!-- [![Build Status](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog.svg?branch=master)](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog) -->
 
 # fluent-plugin-kubernetes_tagged_remote_syslog
 
@@ -16,7 +16,8 @@ This plugin was created because regular remote syslog Fluentd plugins doesn't wo
 Default input should be JSON message annotated with kubernetes info:
 ```
 {
-  "log": "2015/05/05 19:54:41 log me\n",
+  "log": "log me\n",
+  "time": "2015-05-05T19:54:41.248307+00:00",
   "stream": "stderr",
   "docker": {
     "id": "df14e0d5ae4c07284fa636d739c8fc2e6b52bc344658de7d3f08c36a2e804115",
@@ -36,12 +37,12 @@ Default input should be JSON message annotated with kubernetes info:
 ```
 This will become:
 ```
-default fabric8-console-controller-98rqc: 2015/05/05 19:54:41 \n
+default fabric8-console-controller-98rqc: log me\n
 ```
 
 And at the message receive Papertrail will add a timestamp in front of the message:
 ```
-May 05 19:54:45 default fabric8-console-controller-98rqc: 2015/05/05 19:54:41 log me\n
+May 05 19:54:45 default fabric8-console-controller-98rqc: log me\n
 ```
 
 ## Usage
