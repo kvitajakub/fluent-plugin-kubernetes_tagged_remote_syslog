@@ -30,16 +30,15 @@ module Fluent
           end
         end
 
-        next if !record.key?('kubernetes') ||
-                skip_namespaces.include?(record['kubernetes']['namespace_name'])
+        next if skip_namespaces.include?(record.dig('kubernetes', 'namespace_name'))
 
         @loggers[tag] ||= RemoteSyslogLogger::UdpSender.new(
           @host,
           @port,
           facility: record['facility'] || @facility,
           severity: record['severity'] || @severity,
-          program: (record['kubernetes'][@program] || @program)[0...31],
-          local_hostname: (record['kubernetes'][@hostname] || @hostname)[0...31])
+          program: (record.dig('kubernetes', @program) || @program)[0...31],
+          local_hostname: (record.dig('kubernetes', @hostname) || @hostname)[0...31])
 
         @loggers[tag].transmit record['log'].to_s
       end

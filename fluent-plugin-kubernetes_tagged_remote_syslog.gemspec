@@ -7,10 +7,12 @@ Gem::Specification.new do |spec|
   spec.version       = File.read("VERSION").strip
   spec.authors       = ["Richard Lee, Jakub Kvita"]
   spec.email         = ["kvitajakub@gmail.com"]
-  spec.summary       = %q{Fluentd output plugin for remote syslog from Kubernetes.}
+  spec.summary       = %q{Fluentd output plugin for remote syslog. This is meant for processing kubernetes annotated messages.}
   spec.description   = spec.description
   spec.homepage      = "https://github.com/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog"
   spec.license       = "MIT"
+
+  s.required_ruby_version = '>= 2.3.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
