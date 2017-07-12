@@ -1,4 +1,4 @@
-Copyright (c) 2014 Richard Lee
+Copyright (c) 2017 Jakub Kvita
 
 MIT License
 

@@ -1,3 +1,11 @@
+## 0.3.6
+
+* Rewritten, failure preventions.
+
+## 0.3.4
+
+* Forking and creating new plugin.
+
 ## 0.3.3
 
 * Allow override "severity" or "facility" from records [#19](https://github.com/dlackty/fluent-plugin-remote_syslog/pull/19)
