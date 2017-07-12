@@ -23,8 +23,8 @@ module Fluent
     end
 
     def emit(tag, es, chain)
-      es.each do |time, record|
-        record.each_pair do |k, v|
+      es.each do |_time, record|
+        record.each_pair do |_k, v|
           if v.is_a?(String)
             v.force_encoding('utf-8')
           end
@@ -40,7 +40,7 @@ module Fluent
           program: (record.dig('kubernetes', @program) || @program)[0...31],
           local_hostname: (record.dig('kubernetes', @hostname) || @hostname)[0...31])
 
-        @loggers[tag].transmit record['log'].to_s
+        @loggers[tag].transmit((if record.key?('log') then record['log'] else record end).to_s)
       end
       chain.next
     end
