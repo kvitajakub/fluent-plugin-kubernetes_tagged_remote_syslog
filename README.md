@@ -1,6 +1,6 @@
 # fluent-plugin-kubernetes_tagged_remote_syslog
 
-<!-- [![Build Status](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog.svg?branch=master)](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog) -->
+[![Build Status](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog.svg?branch=master)](https://travis-ci.org/kvitajakub/fluent-plugin-kubernetes_tagged_remote_syslog)
 
 [Fluentd](http://fluentd.org) plugin for output to remote syslog service (e.g. [Papertrail](http://papertrailapp.com/)). It is meant to use in Kubernetes environment with [kubernetes_metadata_filter](https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter) plugin annotating the messages.
 
