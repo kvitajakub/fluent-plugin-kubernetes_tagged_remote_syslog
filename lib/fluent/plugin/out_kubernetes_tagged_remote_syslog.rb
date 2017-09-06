@@ -22,6 +22,10 @@ module Fluent
       super
     end
 
+    private shorten_name(str)
+      str.sub(str[23...-6],"..")
+    end
+
     def emit(tag, es, chain)
       es.each do |_time, record|
         record.each_pair do |_k, v|
@@ -37,8 +41,8 @@ module Fluent
           @port,
           facility: record['facility'] || @facility,
           severity: record['severity'] || @severity,
-          program: (record.dig('kubernetes', @program) || @program)[0...31],
-          local_hostname: (record.dig('kubernetes', @hostname) || @hostname)[0...31])
+          program: shorten_name(record.dig('kubernetes', @program) || @program),
+          local_hostname: shorten_name(record.dig('kubernetes', @hostname) || @hostname))
 
         @loggers[tag].transmit((if record.key?('log') then record['log'] else record end).to_s)
       end
