@@ -23,7 +23,11 @@ module Fluent
     end
 
     def shorten_name(str)
-      str.sub(str[23...-6],"..")
+      if str.length > 31
+        return str.sub(str[23...-6],"..")
+      else
+        return str
+      end
     end
 
     def emit(tag, es, chain)
