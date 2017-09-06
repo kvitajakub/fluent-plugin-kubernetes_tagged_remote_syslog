@@ -1,3 +1,7 @@
+## 0.3.7
+
+* Better name shortening.
+
 ## 0.3.6
 
 * Rewritten, failure preventions.
