@@ -22,7 +22,7 @@ module Fluent
       super
     end
 
-    private shorten_name(str)
+    def shorten_name(str)
       str.sub(str[23...-6],"..")
     end
 
