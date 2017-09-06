@@ -24,7 +24,7 @@ module Fluent
 
     def shorten_name(str)
       if str.length > 31
-        return str.sub(str[23...-6],"..")
+        return str.sub(str[24...-5],"..")
       else
         return str
       end
